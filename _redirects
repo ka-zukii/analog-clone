@@ -1,0 +1,12 @@
+# Root → index.html
+/    /src/index.html   200
+
+# Public assets
+/assets/*   /assets/:splat   200
+
+# CSS & JS dari src
+/css/*   /src/css/:splat   200
+/js/*    /src/js/:splat    200
+
+# Clean URL HTML (tanpa .html)
+/*   /src/:splat.html   200
