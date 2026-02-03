@@ -1,0 +1,34 @@
+<IfModule mod_rewrite.c>
+
+    # ===============================
+    # DEVELOPMENT SETTINGS
+    # ===============================
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+
+    RewriteEngine On
+    Options +FollowSymLinks -Indexes -MultiViews
+
+    # ===============================
+    # Public assets
+    # ===============================
+    RewriteRule ^assets/(.*)$ assets/$1 [L]
+
+    # ===============================
+    # CSS & JS dari src
+    # ===============================
+    RewriteRule ^css/(.*)$ src/css/$1 [L]
+    RewriteRule ^js/(.*)$ src/js/$1 [L]
+
+    # ===============================
+    # Root → index.html
+    # ===============================
+    RewriteRule ^$ src/index.html [L]
+
+    # ===============================
+    # Clean URL HTML (tanpa .html)
+    # ===============================
+    RewriteCond %{DOCUMENT_ROOT}/analog-clone/src/$1.html -f
+    RewriteRule ^(.+)$ src/$1.html [L]
+</IfModule>

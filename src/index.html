@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analog Store</title>
+
+    <link rel="icon" href="assets/images/favico-blue.png" />
+    <link rel="stylesheet" href="css/global.css" />
+
+    <style>
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #19b6f7 #d1f0fd;
+      }
+
+      /* Chrome, Edge, Safari */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #d1f0fd;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #19b6f7;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="w-full h-auto font-poppins bg-[#f7f9f9]">
+    <!-- Header & Navigation Bar-->
+    <header class="w-full px-4 shadow-md bg-white sticky top-0 z-50">
+      <!-- Mobile Header -->
+      <div class="w-full flex flex-row justify-between items-center md:hidden">
+        <!-- Logo -->
+        <div class="w-max flex items-center py-4 gap-4">
+          <img src="assets/images/analog-logo-3.svg" />
+          <p
+            id="h-title"
+            class="font-poppins font-bold transition-all duration-300 ease-in-out"
+          >
+            Analog Store
+          </p>
+          <input
+            id="search-box"
+            type="text"
+            placeholder="Search"
+            class="border border-gray-400 outline-none py-2 px-2 font-poppins rounded-sm mx-4 w-0 opacity-0 transition-all duration-300 ease-in-out"
+          />
+        </div>
+        <!-- Search Icon Svg-->
+        <div class="w-max flex items-center justify-end">
+          <svg
+            id="search-button"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-search hover:cursor-pointer"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+
+          <!-- Close Icon Svg -->
+          <div id="close-search-box" class="hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-x hover:cursor-pointer"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Header -->
+      <div
+        class="hidden md:flex md:flex-row md:justify-between md:items-center lg:py-4 lg:px-8"
+      >
+        <!-- Logo -->
+        <div class="w-max flex items-center py-4 gap-4">
+          <img src="assets/images/analog-logo-3.svg" />
+          <p class="font-poppins font-bold text-xl">Analog Store</p>
+        </div>
+        <!-- Navigation Links -->
+        <nav>
+          <ul
+            class="flex flex-row justify-center items-center gap-8 font-poppins font-medium"
+          >
+            <li>
+              <a href="#" class="hover:text-blue-500 transition-colors"
+                >Price List</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-blue-500 transition-colors"
+                >Contact Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:bg-blue-800 transition-colors bg-blue-500 text-white px-8 py-3 rounded-md"
+                >Login</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Mobile Bottom Nav -->
+      <div
+        class="w-full h-20 bg-white fixed bottom-0 left-0 shadow-inner flex flex-row justify-center gap-8 items-center md:hidden z-50"
+      >
+        <a href="#" class="flex flex-col justify-center items-center gap-1">
+          <img
+            src="assets/images/home_active.svg"
+            alt="home-icon"
+            class="w-8 h-8"
+          />
+          <p class="text-[10px] font-medium text-blue-600">Beranda</p>
+        </a>
+        <a href="#" class="flex flex-col justify-center items-center gap-1">
+          <img
+            src="assets/images/pricelist_default.svg"
+            alt="categories-icon"
+            class="w-8 h-8"
+          />
+          <p class="text-[10px] font-medium text-gray-600">Price List</p>
+        </a>
+        <a href="#" class="flex flex-col justify-center items-center gap-1">
+          <img
+            src="assets/images/contact_default.svg"
+            alt="orders-icon"
+            class="w-8 h-8"
+          />
+          <p class="text-[10px] font-medium text-gray-600">Contact Us</p>
+        </a>
+        <a href="#" class="flex flex-col justify-center items-center gap-1">
+          <img
+            src="assets/images/account_default.svg"
+            alt="account-icon"
+            class="w-8 h-8"
+          />
+          <p class="text-[10px] font-medium text-gray-600">Account</p>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex flex-col justify-center items-center w-full h-auto">
+      <!-- Carousel -->
+      <section
+        class="relative w-full flex items-center justify-center lg:mt-12 overflow-hidden"
+        data-carousel
+      >
+        <div
+          class="relative w-full h-40 lg:h-96 lg:w-4/5 xl:w-11/12 xl:h-112 overflow-hidden rounded-2xl shadow-lg"
+          data-slides
+        ></div>
+
+        <!-- Prev -->
+        <button
+          class="carousel-button absolute left-4 bg-black/40 text-white px-3 py-2 rounded-full hover:bg-black/60"
+          data-carousel-button="prev"
+        >
+          ‹
+        </button>
+
+        <!-- Next -->
+        <button
+          class="carousel-button absolute right-4 bg-black/40 text-white px-3 py-2 rounded-full hover:bg-black/60"
+          data-carousel-button="next"
+        >
+          ›
+        </button>
+
+        <!-- Dots -->
+        <div
+          class="carousel-dots absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3"
+        ></div>
+      </section>
+
+      <!-- Product Section -->
+      <section class="w-full h-auto flex flex-col px-4 py-12 gap-4 xl:px-32">
+        <!-- Text -->
+        <div
+          class="w-full h-auto flex flex-row justify-between items-center font-semibold"
+        >
+          <p class="text-md xl:text-2xl">Trending</p>
+          <p class="text-xs xl:text-base">Lihat Semua</p>
+        </div>
+
+        <!-- Product Grid  -->
+        <div
+          class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-4 gap-x-2 w-full h-auto"
+          id="productGrid"
+        ></div>
+      </section>
+
+      <!-- QNA Section -->
+      <section
+        class="w-full h-auto py-12 px-4 bg-[#0d0342] flex flex-col justify-center items-center xl:gap-4"
+      >
+        <h2 class="text-white text-center font-bold text-2xl lg:text-4xl">
+          KENAPA HARUS TOP UP DI ANALOG STORE?
+        </h2>
+
+        <!-- Grid Cards Container -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-12 w-auto xl:gap-8"
+        >
+          <!-- CARD 1 -->
+          <div
+            class="group flex flex-row bg-white p-4 lg:py-8 lg:px-16 rounded-lg items-center lg:flex-col lg:justify-center hover:bg-blue-500 transition-colors duration-300"
+          >
+            <!-- SVG -->
+            <svg
+              class="w-12 h-12 mr-4 lg:mr-0 lg:w-20 lg:h-20 text-black group-hover:text-white transition-colors duration-300"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 8v5l4 2M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+            </svg>
+
+            <div class="flex flex-col justify-center">
+              <h3
+                class="text-black font-semibold text-lg leading-4 lg:text-xl lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                SELALU ONLINE
+              </h3>
+              <p
+                class="text-black text-xs font-semibold leading-4 lg:text-sm lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                Setiap hari 24 jam
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div
+            class="group flex flex-row bg-white p-4 lg:py-8 lg:px-16 rounded-lg items-center lg:flex-col lg:justify-center hover:bg-blue-500 transition-colors duration-300"
+          >
+            <svg
+              class="w-12 h-12 mr-4 lg:mr-0 lg:w-20 lg:h-20 text-black group-hover:text-white transition-colors duration-300"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 12l2 2 4-4M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+            </svg>
+
+            <div class="flex flex-col justify-center">
+              <h3
+                class="text-black font-semibold text-lg leading-4 lg:text-xl lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                READY STOCK
+              </h3>
+              <p
+                class="text-black text-xs font-semibold leading-4 lg:text-sm lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                Stock selalu ready terus
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div
+            class="group flex flex-row bg-white p-4 lg:py-8 lg:px-16 rounded-lg items-center lg:flex-col lg:justify-center hover:bg-blue-500 transition-colors duration-300"
+          >
+            <svg
+              class="w-12 h-12 mr-4 lg:mr-0 lg:w-20 lg:h-20 text-black group-hover:text-white transition-colors duration-300"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+            </svg>
+
+            <div class="flex flex-col justify-center">
+              <h3
+                class="text-black font-semibold text-lg leading-4 lg:text-xl lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                AMAN 100%
+              </h3>
+              <p
+                class="text-black text-xs font-semibold leading-4 lg:text-sm lg:text-center lg:leading-normal group-hover:text-white transition-colors duration-300"
+              >
+                Anti login login boss!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonial Section -->
+      <section class="py-8 px-4 w-full h-auto flex flex-col gap-8">
+        <h2 class="text-center font-semibold text-2xl px-4 lg:text-4xl">
+          "Masih ragu top up di sini? 🤔"
+        </h2>
+
+        <!-- Testimonial Carousel -->
+        <div class="relative w-full mt-12 xl:px-32">
+          <!-- Scroll Container -->
+          <div
+            class="flex gap-4 px-4 md:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+            data-carousel-items
+          ></div>
+
+          <!-- Prev -->
+          <button
+            class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-3 py-2 rounded-full hover:bg-black/60"
+            data-carousel-btn="prev"
+          >
+            ‹
+          </button>
+
+          <!-- Next -->
+          <button
+            class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-3 py-2 rounded-full hover:bg-black/60"
+            data-carousel-btn="next"
+          >
+            ›
+          </button>
+        </div>
+      </section>
+
+      <!-- Overview -->
+      <section
+        class="w-full h-auto bg-blue-100 px-8 pt-12 lg:relative xl:px-32"
+      >
+        <div
+          class="w-full h-auto bg-white rounded-md shadow-md px-8 lg:flex lg:flex-row lg:justify-center lg:items-center lg:w-fit lg:absolute lg:top-20 lg:right-0 lg:mr-8 lg:z-0 xl:right-16"
+        >
+          <!-- Instagram -->
+          <div
+            class="flex flex-col border-b border-slate-400 px-4 py-8 lg:border-b-0 lg:border-r lg:px-8 xl:px-16"
+          >
+            <p class="text-center font-bold text-2xl lg:text-4xl">17.7K+</p>
+            <div
+              class="w-full h-auto flex justify-center items-center flex-col"
+            >
+              <p class="text-center font-semibold text-sm lg:text-base">
+                FOLLOWERS
+              </p>
+              <p class="text-center text-xs lg:text-sm">On Instagram</p>
+            </div>
+          </div>
+
+          <!-- Happy Customer -->
+          <div
+            class="flex flex-col border-b px-4 py-8 border-slate-400 lg:border-b-0 lg:border-r lg:px-8 xl:px-16"
+          >
+            <p class="text-center font-bold text-2xl lg:text-4xl">20K+</p>
+            <div
+              class="w-full h-auto flex justify-center items-center flex-col"
+            >
+              <p class="text-center font-semibold text-sm lg:text-base">
+                HAPPY CUSTOMERS
+              </p>
+              <p class="text-center text-xs lg:text-sm">
+                Orders at Analog Store
+              </p>
+            </div>
+          </div>
+
+          <!-- Shopee Rating -->
+          <div class="flex flex-col px-4 py-8 lg:px-8 xl:px-16">
+            <p class="text-center font-bold text-2xl lg:text-4xl">2.2K+</p>
+            <div
+              class="w-full h-auto flex justify-center items-center flex-col"
+            >
+              <p class="text-center font-semibold text-sm lg:text-base">
+                5-STAR RATINGS
+              </p>
+              <p class="text-center text-xs lg:text-sm">on Shopee</p>
+            </div>
+          </div>
+        </div>
+
+        <img
+          src="assets/images/achievement.png"
+          alt="achievement"
+          class="lg:z-10 relative"
+        />
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full h-auto flex flex-col p-8 mb-16 bg-white justify-center items-center md:mb-0 lg:flex-row-reverse lg:gap-32"
+    >
+      <div
+        class="w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <!-- Payment -->
+        <div class="w-full h-auto flex flex-col justify-center items-center">
+          <p class="font-bold text-black text-sm text-start w-full">
+            Tersedia Pembayaran
+          </p>
+          <!-- Grid Image -->
+          <div
+            class="w-auto h-auto grid grid-cols-3 gap-x-8 sm:gap-x-20 gap-y-2 p-4 lg:w-full lg:gap-x-8"
+          >
+            <img
+              src="assets/images/bni.png"
+              alt="bni"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/bri.png"
+              alt="bri"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/mandiri.png"
+              alt="mandiri"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/permata.png"
+              alt="permata"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/bca.png"
+              alt="bca"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/gopay.png"
+              alt="gopay"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/shopeepay.png"
+              alt="shopeepay"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/qris.png"
+              alt="qris"
+              class="w-14 h-6 object-cover"
+            />
+            <img
+              src="assets/images/alfamart.png"
+              alt="alfamart"
+              class="w-14 h-6 object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Useful Links -->
+        <div class="lg:w-fit">
+          <p class="font-bold text-black text-sm">Useful Links</p>
+          <ul class="mt-2 flex flex-row gap-4">
+            <li>
+              <a href="#" class="text-sm hover:text-blue-600">Game</a>
+            </li>
+            <li><a href="#" class="text-sm hover:text-blue-600">FAQs</a></li>
+            <li>
+              <a href="#" class="text-sm hover:text-blue-600"
+                >Syarat & Ketentuan</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Get in Touch -->
+        <div class="w-full h-auto lg:w-fit lg:mt-0">
+          <p class="font-bold text-black text-sm hidden">Get in Touch</p>
+          <ul class="mt-2 flex flex-row items-center justify-center gap-8">
+            <li>
+              <a href="#" class="text-sm hover:text-blue-600"
+                ><img src="assets/images/icon_instagram.svg" alt="Instagram"
+              /></a>
+            </li>
+            <li>
+              <a href="#" class="text-sm hover:text-blue-600"
+                ><img src="assets/images/icon_whatsapp.svg" alt="WhatsApp"
+              /></a>
+            </li>
+            <li>
+              <a href="#" class="text-sm hover:text-blue-600"
+                ><img src="assets/images/icon_twitter.svg" alt="Twitter"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Logo -->
+      <div
+        class="w-full h-auto flex flex-col justify-center items-center gap-4 lg:w-1/3"
+      >
+        <img
+          src="assets/images/logo-analog-footer.svg"
+          alt="Analaog Store Logo"
+          class="mt-8 w-40 h-auto"
+        />
+        <div class="mt-4 flex flex-col justify-center items-center gap-2">
+          <p class="text-xs text-center font-medium">
+            Specialist Top Up Super Kilat!
+          </p>
+          <p class="text-xs text-center font-medium">Est. 2019</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/carousel-testi.js"></script>
+  </body>
+</html>
