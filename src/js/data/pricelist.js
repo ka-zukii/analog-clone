@@ -1,11 +1,11 @@
 /*
  * Kategori tab pricelist.
  * type:
- *  - "table" : tampilkan tabel harga dari `items`
- *  - "game"  : tampilkan kartu game dari katalog (games.js) dengan id yang sama
- *  - "grid"  : tampilkan semua game katalog yang tidak punya tab sendiri
- *  - "empty" : tampilkan pesan "segera hadir"
- * Tab "game" dan "grid" memakai gambar dari katalog games.js.
+ *  - "table"   : tabel harga dari `items` (data resmi)
+ *  - "catalog" : tabel harga dari paket di katalog games.js (gameId).
+ *                ⚠️ harga di games.js masih DUMMY, ganti dengan harga asli.
+ *  - "picker"  : tab Game Lainnya. User memilih game lewat modal; tabel & ikon mengikuti pilihan.
+ *  - "empty"   : pesan "segera hadir"
  */
 export const pricelistCategories = [
   {
@@ -44,10 +44,10 @@ export const pricelistCategories = [
   },
   {
     id: "zepeto",
-    type: "game",
+    type: "catalog",
+    gameId: "zepeto",
     name: "Zepeto",
     title: "Zepeto",
-    logo: "assets/product/zepeto.png",
   },
   {
     id: "honkai-star-rail",
@@ -58,7 +58,7 @@ export const pricelistCategories = [
   },
   {
     id: "lainnya",
-    type: "grid",
+    type: "picker",
     name: "Game Lainnya",
     title: "Game Lainnya",
     logo: null,

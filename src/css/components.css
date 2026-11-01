@@ -1124,3 +1124,118 @@ body.pl-page {
   transition: background 0.2s, color 0.2s;
 }
 .pl-game:hover .pl-game__cta { background: var(--pl-blue); color: #fff; }
+
+/* ---------- Tombol pilih game & modal ---------- */
+.pl-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.pl-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 1px solid var(--pl-blue);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--pl-blue);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pl-picker-btn svg { transition: transform 0.2s; }
+.pl-picker-btn:hover { background: var(--pl-blue); color: #fff; }
+.pl-picker-btn:hover svg { transform: translateY(2px); }
+
+.pl-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(640px, 86vh);
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(16, 24, 40, 0.25);
+  overflow: hidden;
+  color: var(--pl-ink);
+  font-family: "Poppins", system-ui, sans-serif;
+}
+.pl-dialog[open] { animation: pl-pop 0.22s ease; }
+.pl-dialog::backdrop {
+  background: rgba(17, 24, 39, 0.45);
+  animation: pl-fade 0.2s ease;
+}
+@keyframes pl-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pl-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.pl-dialog__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--pl-line);
+}
+.pl-dialog__head h3 { margin: 0; font-size: 17px; font-weight: 700; }
+.pl-dialog__close {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: var(--pl-ink);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pl-dialog__close:hover { background: #e5e7eb; }
+.pl-dialog__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 18px 20px 22px;
+  overflow: auto;
+  max-height: calc(min(640px, 86vh) - 70px);
+}
+@media (min-width: 600px) {
+  .pl-dialog__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.pl-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  border: 1px solid var(--pl-line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--pl-ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.pl-pick img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.pl-pick:hover {
+  border-color: #b6cdf7;
+  transform: translateY(-2px);
+}
+.pl-pick[aria-pressed="true"] {
+  border-color: var(--pl-blue);
+  background: var(--pl-blue-50);
+  box-shadow: inset 0 0 0 1px var(--pl-blue);
+}
