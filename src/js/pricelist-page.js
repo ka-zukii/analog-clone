@@ -20,14 +20,14 @@ const pickerGames = games.filter((g) => !CATEGORY_IDS.has(g.id));
 const gridIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>`;
 
 let activeIndex = 0;
-let pickedGameId = pickerGames[0]?.id ?? null;
+let pickedGameId = null; // belum ada game dipilih: tab tetap tampil sebagai "Game Lainnya"
 
 /* ---------- Data per tab ---------- */
 
 // Ubah paket katalog jadi item tabel (nama + harga)
 const itemsFromGame = (game) =>
   game.packages.map((pkg) => ({
-    name: pkg.bonus ? `${pkg.label} ${pkg.bonus}` : pkg.label,
+    name: pkg.bonus && !pkg.label.includes(pkg.bonus) ? `${pkg.label} (${pkg.bonus})` : pkg.label,
     price: pkg.price,
   }));
 
@@ -38,11 +38,12 @@ const viewFor = (cat) => {
   }
   if (cat.type === "catalog") {
     const game = games.find((g) => g.id === cat.gameId);
-    return { title: game?.name ?? cat.title, logo: game?.image, items: game ? itemsFromGame(game) : [] };
+    return { title: cat.title ?? game?.name, logo: game?.image, items: game ? itemsFromGame(game) : [] };
   }
   if (cat.type === "picker") {
     const game = games.find((g) => g.id === pickedGameId);
-    return { title: game?.name ?? cat.title, logo: game?.image, items: game ? itemsFromGame(game) : [] };
+    if (!game) return { title: cat.title, logo: null, items: [] };
+    return { title: game.name, logo: game.image, items: itemsFromGame(game) };
   }
   return { title: cat.title ?? cat.name, logo: cat.logo, items: [] };
 };
@@ -139,7 +140,9 @@ const renderPanel = (index) => {
           ${picker}
         </div>
       </div>
-      ${view.items.length ? tableTemplate(view) : `<div class="pl-empty"><p>Belum ada harga untuk game ini.</p></div>`}
+      ${view.items.length
+        ? tableTemplate(view)
+        : `<div class="pl-empty"><p>${cat.type === "picker" ? "Pilih game untuk melihat pricelist-nya." : "Belum ada harga untuk game ini."}</p></div>`}
     </div>`;
 };
 

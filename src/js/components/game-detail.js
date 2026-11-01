@@ -7,7 +7,7 @@ import { formatNumber, formatRupiah } from "../utils/format.js";
 
 const DEFAULT_HELP =
   "Buka game, lalu masuk ke menu profil. User ID biasanya tertulis di bawah nama akun.";
-const CATEGORY_ORDER = ["Membership", "Limited Offer", "Limited Promo", "Top Up", "Battle Pass"];
+const CATEGORY_ORDER = ["Membership", "Limited Offer", "Limited Promo", "Top Up", "Voucher", "Battle Pass"];
 
 /* ---------- Template helpers ---------- */
 
@@ -81,10 +81,18 @@ const sectionHead = (num, title, extra = "") => `
 /* ---------- Page ---------- */
 
 const pageTemplate = (game) => {
-  const packageGroups = CATEGORY_ORDER.map((cat) => ({
+  // Kategori sesuai CATEGORY_ORDER; kategori tak dikenal ditaruh di belakang
+  const rank = (cat) => {
+    const i = CATEGORY_ORDER.indexOf(cat);
+    return i === -1 ? CATEGORY_ORDER.length : i;
+  };
+  const categories = [...new Set(game.packages.map((p) => p.category))].sort(
+    (a, b) => rank(a) - rank(b),
+  );
+  const packageGroups = categories.map((cat) => ({
     cat,
     items: game.packages.filter((p) => p.category === cat),
-  })).filter((g) => g.items.length);
+  }));
 
   const packagesHtml = packageGroups
     .map((g) =>
@@ -118,7 +126,7 @@ const pageTemplate = (game) => {
           <div class="gd-product__info">
             <span class="gd-badge">${escapeHtml(game.category)}</span>
             <h1 class="gd-product__name">${escapeHtml(game.name)}</h1>
-            <p class="gd-product__desc">Top up ${escapeHtml(game.unit)} resmi dengan proses cepat dan aman.</p>
+            <p class="gd-product__desc">Pilih nominal, isi data akun, lalu bayar. Proses cepat dan aman.</p>
           </div>
         </div>
       </aside>
@@ -201,7 +209,7 @@ const pageTemplate = (game) => {
           </div>
 
           <button type="submit" class="gd-btn gd-btn--block gd-buy" disabled>Beli Sekarang</button>
-          <p class="gd-summary__note">Pastikan data akun sudah benar. Kesalahan input User ID atau Zone ID menjadi tanggung jawab pembeli.</p>
+          <p class="gd-summary__note">Pastikan data akun sudah benar. Kesalahan input User ID atau Zone ID menjadi tanggung jawab pembeli. Harga mengacu pada referensi provider.</p>
         </div>
       </aside>
     </form>`;

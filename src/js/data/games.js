@@ -1,63 +1,14 @@
 /*
- * Katalog game.
- * ⚠️ Nominal, harga, bonus, promo, dan nama mata uang di file ini adalah CONTOH (mock).
- *    Ganti dengan data asli (atau dari API) sebelum deploy.
+ * Katalog game (info game + field input).
+ * Paket & harga diambil dari PRICE_CATALOG (price-catalog.js), referensi provider.
  */
+import { PRICE_CATALOG } from "./price-catalog.js";
 
-const TOP_UP = [
-  [100, 0, 15000],
-  [300, 30, 45000],
-  [500, 60, 75000],
-  [1000, 150, 145000],
-  [2000, 400, 280000],
-];
-
-const buildPackages = (unit) => [
-  {
-    id: "mem-bulanan",
-    category: "Membership",
-    label: "Membership Bulanan",
-    detail: `Bonus ${unit} harian selama 30 hari`,
-    price: 79000,
-  },
-  {
-    id: "mem-mingguan",
-    category: "Membership",
-    label: "Membership Mingguan",
-    detail: "Bonus harian selama 7 hari",
-    price: 25000,
-  },
-  {
-    id: "offer-double",
-    category: "Limited Offer",
-    label: "Double Bonus",
-    detail: "Hanya sekali per akun",
-    price: 15000,
-  },
-  {
-    id: "promo-1",
-    category: "Limited Promo",
-    label: `1000 ${unit}`,
-    bonus: "+200 Bonus",
-    price: 120000,
-  },
-  {
-    id: "promo-2",
-    category: "Limited Promo",
-    label: `2000 ${unit}`,
-    bonus: "+500 Bonus",
-    price: 240000,
-  },
-  ...TOP_UP.map(([amount, bonus, price]) => ({
-    id: `top-${amount}`,
-    category: "Top Up",
-    label: `${amount} ${unit}`,
-    bonus: bonus ? `+${bonus} Bonus` : undefined,
-    price,
-  })),
-];
-
-const game = (base) => ({ ...base, packages: buildPackages(base.unit) });
+const game = (base) => ({
+  ...base,
+  packages: PRICE_CATALOG[base.id] ?? [],
+  priceStatus: PRICE_CATALOG[base.id]?.length ? "reference" : "unavailable",
+});
 
 const numericId = (label, min, max, placeholder) => ({
   name: "uid",
