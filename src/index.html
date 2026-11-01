@@ -19,132 +19,60 @@
   <body class="w-full h-auto font-poppins bg-[#f7f9f9]">
     <a href="#konten" class="skip-link">Lewati ke konten</a>
 
-    <!-- Header & Navigation -->
-    <header class="w-full px-4 shadow-md bg-white sticky top-0 z-50" id="top">
-      <!-- Mobile Header -->
-      <div class="w-full flex flex-row justify-between items-center md:hidden">
-        <div class="w-max flex items-center py-4 gap-4 min-w-0">
+    <header class="nav" id="top">
+      <div class="nav__inner">
+        <a href="#top" class="nav__brand">
           <img src="assets/images/analog-logo-3.svg" alt="" />
-          <p
-            id="h-title"
-            class="font-poppins font-bold whitespace-nowrap transition-all duration-300 ease-in-out"
-          >
-            Analog Store
-          </p>
-          <input
-            id="search-mobile"
-            type="search"
-            placeholder="Cari game..."
-            aria-label="Cari game"
-            class="border border-gray-400 outline-none py-2 px-2 font-poppins rounded-sm mx-2 w-0 opacity-0 transition-all duration-300 ease-in-out"
-          />
+          <span>analog store</span>
+        </a>
+
+        <div class="nav__end">
+          <nav class="nav__links" aria-label="Navigasi utama">
+            <a href="/pricelist">Price List</a>
+            <a href="#kontak">Contact Us</a>
+            <a href="#" class="nav__login">Login</a>
+          </nav>
+
+          <div class="nav-search" data-nav-search>
+            <form class="nav-search__panel" role="search" action="/#trending" method="get" data-nav-search-form>
+              <label for="nav-search-input" class="sr-only">Cari game</label>
+              <input id="nav-search-input" name="q" type="search" class="nav-search__input" placeholder="Cari game..." autocomplete="off" />
+            </form>
+            <button type="button" class="nav-search__btn" data-nav-search-btn aria-label="Buka pencarian" aria-expanded="false" aria-controls="nav-search-input">
+              <svg class="nav-search__icon nav-search__icon--search" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <svg class="nav-search__icon nav-search__icon--close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
         </div>
-
-        <button
-          id="search-toggle"
-          type="button"
-          aria-label="Buka pencarian"
-          aria-expanded="false"
-          aria-controls="search-mobile"
-          class="p-2 hover:cursor-pointer"
-        >
-          <svg
-            id="search-icon-open"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="7"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <svg
-            id="search-icon-close"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-            hidden
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
       </div>
-
-      <!-- Desktop Header -->
-      <div
-        class="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-6 lg:py-4 lg:px-8"
-      >
-        <a href="#top" class="w-max flex items-center py-4 gap-4">
-          <img src="assets/images/analog-logo-3.svg" alt="" />
-          <span class="font-poppins font-bold text-xl">Analog Store</span>
-        </a>
-
-        <label for="search-desktop" class="sr-only">Cari game</label>
-        <input
-          id="search-desktop"
-          type="search"
-          placeholder="Cari game..."
-          class="flex-1 max-w-xs border border-gray-300 rounded-md py-2 px-4 font-poppins text-sm outline-none focus:border-blue-500"
-        />
-
-        <nav aria-label="Navigasi utama">
-          <ul
-            class="flex flex-row justify-center items-center gap-8 font-poppins font-medium"
-          >
-            <li>
-              <a href="#trending" class="hover:text-blue-500 transition-colors">Price List</a>
-            </li>
-            <li>
-              <a href="#kontak" class="hover:text-blue-500 transition-colors">Contact Us</a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="hover:bg-blue-800 transition-colors bg-blue-500 text-white px-8 py-3 rounded-md"
-                >Login</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <!-- Mobile Bottom Nav -->
-      <nav
-        aria-label="Navigasi bawah"
-        class="w-full h-20 bg-white fixed bottom-0 left-0 shadow-inner flex flex-row justify-center gap-8 items-center md:hidden z-50"
-      >
-        <a href="#top" class="flex flex-col justify-center items-center gap-1" aria-current="page">
-          <img src="assets/images/home_active.svg" alt="" class="w-8 h-8" />
-          <p class="text-[10px] font-medium text-blue-600">Beranda</p>
-        </a>
-        <a href="#trending" class="flex flex-col justify-center items-center gap-1">
-          <img src="assets/images/pricelist_default.svg" alt="" class="w-8 h-8" />
-          <p class="text-[10px] font-medium text-gray-600">Price List</p>
-        </a>
-        <a href="#kontak" class="flex flex-col justify-center items-center gap-1">
-          <img src="assets/images/contact_default.svg" alt="" class="w-8 h-8" />
-          <p class="text-[10px] font-medium text-gray-600">Contact Us</p>
-        </a>
-        <a href="#" class="flex flex-col justify-center items-center gap-1">
-          <img src="assets/images/account_default.svg" alt="" class="w-8 h-8" />
-          <p class="text-[10px] font-medium text-gray-600">Account</p>
-        </a>
-      </nav>
     </header>
+
+    <!-- Mobile Bottom Nav -->
+    <nav
+      aria-label="Navigasi bawah"
+      class="w-full h-20 bg-white fixed bottom-0 left-0 shadow-inner flex flex-row justify-center gap-8 items-center md:hidden z-50"
+    >
+      <a href="#top" class="flex flex-col justify-center items-center gap-1" aria-current="page">
+        <img src="assets/images/home_active.svg" alt="" class="w-8 h-8" />
+        <p class="text-[10px] font-medium text-blue-600">Beranda</p>
+      </a>
+      <a href="/pricelist" class="flex flex-col justify-center items-center gap-1">
+        <img src="assets/images/pricelist_default.svg" alt="" class="w-8 h-8" />
+        <p class="text-[10px] font-medium text-gray-600">Price List</p>
+      </a>
+      <a href="#kontak" class="flex flex-col justify-center items-center gap-1">
+        <img src="assets/images/contact_default.svg" alt="" class="w-8 h-8" />
+        <p class="text-[10px] font-medium text-gray-600">Contact Us</p>
+      </a>
+      <a href="#" class="flex flex-col justify-center items-center gap-1">
+        <img src="assets/images/account_default.svg" alt="" class="w-8 h-8" />
+        <p class="text-[10px] font-medium text-gray-600">Account</p>
+      </a>
+    </nav>
 
     <!-- Main Content -->
     <main id="konten" class="flex flex-col justify-center items-center w-full h-auto">

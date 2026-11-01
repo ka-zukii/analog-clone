@@ -16,22 +16,35 @@
   <body class="gd-page">
     <a href="#konten" class="skip-link">Lewati ke konten</a>
 
-    <header class="gd-nav">
-      <div class="gd-nav__inner">
-        <a href="/" class="gd-brand">
+    <header class="nav" id="top">
+      <div class="nav__inner">
+        <a href="/" class="nav__brand">
           <img src="assets/images/analog-logo-3.svg" alt="" />
           <span>analog store</span>
         </a>
-        <nav class="gd-nav__links" aria-label="Navigasi utama">
-          <a href="/#trending">Price List</a>
-          <a href="/#kontak">Contact Us</a>
-          <a href="#" class="gd-nav__login">Login</a>
-        </nav>
-        <a href="/#trending" class="gd-nav__icon" aria-label="Cari game">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </a>
+
+        <div class="nav__end">
+          <nav class="nav__links" aria-label="Navigasi utama">
+            <a href="/pricelist">Price List</a>
+            <a href="/#kontak">Contact Us</a>
+            <a href="#" class="nav__login">Login</a>
+          </nav>
+
+          <div class="nav-search" data-nav-search>
+            <form class="nav-search__panel" role="search" action="/" method="get" data-nav-search-form>
+              <label for="nav-search-input" class="sr-only">Cari game</label>
+              <input id="nav-search-input" name="q" type="search" class="nav-search__input" placeholder="Cari game..." autocomplete="off" />
+            </form>
+            <button type="button" class="nav-search__btn" data-nav-search-btn aria-label="Buka pencarian" aria-expanded="false" aria-controls="nav-search-input">
+              <svg class="nav-search__icon nav-search__icon--search" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <svg class="nav-search__icon nav-search__icon--close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
