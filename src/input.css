@@ -4,3 +4,49 @@
 @theme {
   --font-poppins: "Poppins", sans-serif;
 }
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #19b6f7 #d1f0fd;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #d1f0fd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #19b6f7;
+    border-radius: 10px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
