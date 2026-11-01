@@ -52,25 +52,22 @@
     </header>
 
     <!-- Mobile Bottom Nav -->
-    <nav
-      aria-label="Navigasi bawah"
-      class="w-full h-20 bg-white fixed bottom-0 left-0 shadow-inner flex flex-row justify-center gap-8 items-center md:hidden z-50"
-    >
-      <a href="#top" class="flex flex-col justify-center items-center gap-1" aria-current="page">
-        <img src="assets/images/home_active.svg" alt="" class="w-8 h-8" />
-        <p class="text-[10px] font-medium text-blue-600">Beranda</p>
+    <nav class="dock" aria-label="Navigasi bawah">
+      <a href="/" class="is-active" aria-current="page">
+        <img src="assets/images/home_active.svg" alt="" />
+        <span>Beranda</span>
       </a>
-      <a href="/pricelist" class="flex flex-col justify-center items-center gap-1">
-        <img src="assets/images/pricelist_default.svg" alt="" class="w-8 h-8" />
-        <p class="text-[10px] font-medium text-gray-600">Price List</p>
+      <a href="/pricelist">
+        <img src="assets/images/pricelist_default.svg" alt="" />
+        <span>Price List</span>
       </a>
-      <a href="#kontak" class="flex flex-col justify-center items-center gap-1">
-        <img src="assets/images/contact_default.svg" alt="" class="w-8 h-8" />
-        <p class="text-[10px] font-medium text-gray-600">Contact Us</p>
+      <a href="/#kontak">
+        <img src="assets/images/contact_default.svg" alt="" />
+        <span>Contact Us</span>
       </a>
-      <a href="#" class="flex flex-col justify-center items-center gap-1">
-        <img src="assets/images/account_default.svg" alt="" class="w-8 h-8" />
-        <p class="text-[10px] font-medium text-gray-600">Account</p>
+      <a href="#">
+        <img src="assets/images/account_default.svg" alt="" />
+        <span>Account</span>
       </a>
     </nav>
 
