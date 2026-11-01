@@ -1,11 +1,16 @@
 /*
- * Data pricelist per kategori.
- * Harga Genshin Impact sesuai data resmi. Kategori lain belum punya data:
- * isi `items` setelah data harga tersedia.
+ * Kategori tab pricelist.
+ * type:
+ *  - "table" : tampilkan tabel harga dari `items`
+ *  - "game"  : tampilkan kartu game dari katalog (games.js) dengan id yang sama
+ *  - "grid"  : tampilkan semua game katalog yang tidak punya tab sendiri
+ *  - "empty" : tampilkan pesan "segera hadir"
+ * Tab "game" dan "grid" memakai gambar dari katalog games.js.
  */
 export const pricelistCategories = [
   {
     id: "genshin",
+    type: "table",
     name: "Genshin Impact",
     title: "Genshin Impact – Login (Global)",
     logo: "assets/product/genshin.png",
@@ -38,26 +43,24 @@ export const pricelistCategories = [
     ],
   },
   {
-    id: "vampir",
-    name: "Vampir",
-    title: "Vampir",
-    // SEMENTARA: logo Vampir belum ada di assets. Ganti dengan assets/product/vampir.png jika sudah tersedia.
+    id: "zepeto",
+    type: "game",
+    name: "Zepeto",
+    title: "Zepeto",
     logo: "assets/product/zepeto.png",
-    items: [],
   },
   {
     id: "honkai-star-rail",
+    type: "empty",
     name: "Honkai Star Rail",
     title: "Honkai Star Rail – Login (Global)",
     logo: "assets/product/honkai_star_rail.jpg",
-    items: [],
   },
   {
     id: "lainnya",
+    type: "grid",
     name: "Game Lainnya",
     title: "Game Lainnya",
     logo: null,
-    icon: true,
-    items: [],
   },
 ];
