@@ -1,0 +1,673 @@
+/* ==========================================================================
+   Komponen tambahan, CSS biasa (tanpa Tailwind).
+   Dimuat SETELAH global.css.
+   ========================================================================== */
+
+[hidden] { display: none !important; }
+
+/* ---------- Utilitas ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -100px;
+  z-index: 100;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+
+/* ==========================================================================
+   Halaman detail game (prefix gd-)
+   ========================================================================== */
+:root {
+  --gd-brand: #2563eb;
+  --gd-brand-600: #1d4ed8;
+  --gd-brand-50: #eff6ff;
+  --gd-ink: #111827;
+  --gd-muted: #6b7280;
+  --gd-line: #e5e7eb;
+  --gd-radius: 12px;
+  --gd-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --gd-danger: #dc2626;
+  --gd-ok: #059669;
+}
+
+body.gd-page {
+  margin: 0;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gd-ink);
+  background: #f5f7f8;
+  min-height: 100vh;
+}
+
+:focus-visible { outline: 2px solid var(--gd-brand); outline-offset: 2px; }
+
+/* ---------- Navbar ---------- */
+.gd-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--gd-line);
+}
+.gd-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.gd-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gd-ink);
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+}
+.gd-brand img { height: 28px; width: auto; }
+.gd-nav__links {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: 24px;
+}
+.gd-nav__links a {
+  color: var(--gd-ink);
+  font-weight: 500;
+  text-decoration: none;
+}
+.gd-nav__links a:hover { color: var(--gd-brand); }
+.gd-nav__login {
+  background: var(--gd-brand);
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+.gd-nav__login:hover { background: var(--gd-brand-600); }
+.gd-nav__icon {
+  margin-left: auto;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--gd-ink);
+  display: grid;
+  place-items: center;
+}
+.gd-nav__icon:hover { background: #f3f4f6; }
+
+@media (min-width: 768px) {
+  .gd-nav__links { display: flex; }
+  .gd-nav__icon { margin-left: 0; }
+}
+
+/* ---------- Layout ---------- */
+.gd-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 16px 170px; /* ruang untuk bar ringkasan di mobile */
+}
+.gd-loading {
+  padding: 80px 0;
+  text-align: center;
+  color: var(--gd-muted);
+}
+.gd-layout {
+  display: grid;
+  gap: 20px;
+  grid-template-areas: "product" "form" "summary";
+}
+.gd-product { grid-area: product; }
+.gd-checkout {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.gd-summary { grid-area: summary; }
+
+@media (min-width: 768px) {
+  .gd-main { padding-bottom: 40px; }
+  .gd-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-areas: "product form" "product summary";
+    align-items: start;
+  }
+  .gd-product { position: sticky; top: 84px; }
+  .gd-summary { position: static; }
+}
+
+@media (min-width: 1200px) {
+  .gd-layout {
+    grid-template-columns: 240px minmax(0, 1fr) 300px;
+    grid-template-areas: "product form summary";
+  }
+  .gd-product { position: sticky; top: 84px; }
+  .gd-summary { position: sticky; top: 84px; }
+}
+
+/* ---------- Kartu info game ---------- */
+.gd-product__card {
+  background: #fff;
+  border: 1px solid var(--gd-line);
+  border-radius: var(--gd-radius);
+  padding: 14px;
+  box-shadow: var(--gd-shadow);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.gd-product__cover {
+  flex-shrink: 0;
+  width: 88px;
+  aspect-ratio: 3 / 4;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+.gd-product__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gd-product__info { min-width: 0; }
+.gd-product__name {
+  margin: 8px 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.gd-product__desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gd-muted);
+}
+.gd-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--gd-brand-50);
+  color: var(--gd-brand-600);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .gd-product__card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+  .gd-product__cover { width: 100%; }
+  .gd-product__name { font-size: 18px; }
+}
+
+/* ---------- Kartu langkah ---------- */
+.gd-card {
+  background: #fff;
+  border: 1px solid var(--gd-line);
+  border-radius: var(--gd-radius);
+  padding: 18px;
+  box-shadow: var(--gd-shadow);
+}
+.gd-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gd-line);
+}
+.gd-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.gd-card__title--plain {
+  margin-bottom: 12px;
+}
+.gd-optional {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--gd-muted);
+}
+.gd-step {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gd-ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Tooltip bantuan */
+.gd-tip { position: relative; display: inline-flex; margin-left: auto; }
+.gd-tip__btn {
+  border: 0;
+  background: none;
+  padding: 4px;
+  color: var(--gd-brand);
+  cursor: pointer;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.gd-tip__bubble {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 10;
+  width: min(280px, 80vw);
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+.gd-tip:hover .gd-tip__bubble,
+.gd-tip:focus-within .gd-tip__bubble {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Input */
+.gd-fields { display: grid; gap: 14px; }
+.gd-field { display: flex; flex-direction: column; gap: 6px; }
+.gd-label { font-size: 13px; font-weight: 500; }
+.gd-input {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 14px;
+  padding: 11px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--gd-ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.gd-input::placeholder { color: #9ca3af; }
+.gd-input:focus {
+  border-color: var(--gd-brand);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.gd-input:user-invalid { border-color: var(--gd-danger); }
+
+@media (min-width: 640px) {
+  .gd-fields { grid-template-columns: 1fr 1fr; }
+}
+
+/* Accordion */
+.gd-group {
+  border: 1px solid var(--gd-line);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.gd-group + .gd-group { margin-top: 10px; }
+.gd-group__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.gd-group__title::-webkit-details-marker { display: none; }
+.gd-group__count {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gd-muted);
+}
+.gd-group__title::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-right: 2px solid var(--gd-muted);
+  border-bottom: 2px solid var(--gd-muted);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.2s;
+}
+.gd-group[open] > .gd-group__title::after {
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+.gd-group__body {
+  padding: 0 14px 14px;
+}
+.gd-group[open] .gd-group__body {
+  animation: gd-fade 0.2s ease;
+}
+@keyframes gd-fade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Nominal */
+.gd-pkgs {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 640px) {
+  .gd-pkgs { grid-template-columns: repeat(3, 1fr); }
+}
+.gd-pkg { display: block; cursor: pointer; }
+.gd-pkg__box {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px;
+  border: 1px solid var(--gd-line);
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.gd-pkg:hover .gd-pkg__box { border-color: #93c5fd; }
+.gd-pkg input:checked + .gd-pkg__box {
+  border-color: var(--gd-brand);
+  background: var(--gd-brand-50);
+  box-shadow: inset 0 0 0 1px var(--gd-brand);
+}
+.gd-pkg input:focus-visible + .gd-pkg__box {
+  outline: 2px solid var(--gd-brand);
+  outline-offset: 2px;
+}
+.gd-pkg__label { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.gd-pkg__bonus { font-size: 12px; font-weight: 600; color: var(--gd-ok); }
+.gd-pkg__detail { font-size: 11px; color: var(--gd-muted); line-height: 1.3; }
+.gd-pkg__price {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.gd-pkg input:checked + .gd-pkg__box .gd-pkg__price { color: var(--gd-brand-600); }
+
+/* Pilihan (pembayaran & notifikasi) */
+.gd-pays { display: grid; gap: 8px; }
+.gd-pay { display: block; cursor: pointer; }
+.gd-pay__box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--gd-line);
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s;
+}
+.gd-pay:hover .gd-pay__box { border-color: #93c5fd; }
+.gd-pay input:checked + .gd-pay__box {
+  border-color: var(--gd-brand);
+  background: var(--gd-brand-50);
+  box-shadow: inset 0 0 0 1px var(--gd-brand);
+}
+.gd-pay input:focus-visible + .gd-pay__box {
+  outline: 2px solid var(--gd-brand);
+  outline-offset: 2px;
+}
+.gd-pay__logo {
+  flex-shrink: 0;
+  width: 56px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gd-line);
+  border-radius: 6px;
+  background: #fff;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.gd-pay__logo img {
+  max-width: 46px;
+  max-height: 20px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.gd-pay__logo--text {
+  font-size: 10px;
+  font-weight: 700;
+  color: #374151;
+  text-align: center;
+  line-height: 1.1;
+}
+.gd-pay__name { flex: 1; font-size: 13px; font-weight: 600; }
+.gd-pay__fee { font-size: 12px; color: var(--gd-muted); white-space: nowrap; }
+.gd-radio {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  box-sizing: border-box;
+}
+.gd-pay input:checked + .gd-pay__box .gd-radio {
+  border-color: var(--gd-brand);
+  box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 20px var(--gd-brand);
+}
+
+/* Notifikasi: input tambahan */
+.gd-checkout .gd-card > .gd-field { margin-top: 12px; }
+
+/* Voucher */
+.gd-voucher { display: flex; gap: 8px; }
+.gd-voucher .gd-input { flex: 1; }
+.gd-msg {
+  min-height: 1.2em;
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+.gd-msg--ok { color: var(--gd-ok); }
+.gd-msg--err { color: var(--gd-danger); }
+.gd-help-line {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--gd-muted);
+}
+.gd-help-line a { color: var(--gd-brand); font-weight: 600; }
+
+/* ---------- Tombol ---------- */
+.gd-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 11px 18px;
+  background: var(--gd-brand);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.gd-btn:hover:not(:disabled) { background: var(--gd-brand-600); }
+.gd-btn:disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+.gd-btn--outline {
+  background: #fff;
+  color: var(--gd-brand);
+  border-color: var(--gd-brand);
+}
+.gd-btn--outline:hover:not(:disabled) {
+  background: var(--gd-brand-50);
+  color: var(--gd-brand-600);
+}
+.gd-btn--block { width: 100%; }
+
+/* ---------- Ringkasan ---------- */
+.gd-summary__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--gd-line);
+  border-radius: var(--gd-radius);
+  box-shadow: var(--gd-shadow);
+}
+.gd-summary__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.gd-summary__details {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+}
+.gd-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gd-summary__row dt { color: var(--gd-muted); flex-shrink: 0; }
+.gd-summary__row dd {
+  margin: 0;
+  font-weight: 500;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.gd-summary__row--discount dd { color: var(--gd-ok); }
+.gd-summary__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--gd-line);
+}
+.gd-summary__total-label { font-size: 13px; color: var(--gd-muted); }
+.gd-summary__total strong {
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gd-brand-600);
+}
+.gd-summary__toggle { display: none; }
+.gd-summary__note {
+  margin: 0;
+  font-size: 11px;
+  color: var(--gd-muted);
+  line-height: 1.5;
+}
+
+/* Mobile: ringkasan jadi bar tetap di bawah */
+@media (max-width: 767px) {
+  .gd-summary {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+  }
+  .gd-summary__card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 12px 16px;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 0;
+    box-shadow: 0 -6px 20px rgba(16, 24, 40, 0.08);
+  }
+  .gd-summary__title,
+  .gd-summary__note { display: none; }
+  .gd-summary__details { display: none; grid-column: 1 / -1; }
+  .gd-summary.is-open .gd-summary__details {
+    display: grid;
+    max-height: 40vh;
+    overflow: auto;
+    padding: 12px 0 4px;
+    border-top: 1px solid var(--gd-line);
+  }
+  .gd-summary__total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .gd-summary__total strong { margin-left: 0; font-size: 17px; }
+  .gd-summary__toggle {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--gd-brand);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .gd-buy { width: auto; padding: 12px 22px; }
+}
+
+/* ---------- Footer & not found ---------- */
+.gd-footer {
+  margin-top: 40px;
+  padding: 24px 16px;
+  background: #fff;
+  border-top: 1px solid var(--gd-line);
+  text-align: center;
+  font-size: 12px;
+  color: var(--gd-muted);
+}
+.gd-empty {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 0 16px;
+  text-align: center;
+}
+.gd-empty h1 { margin: 0 0 8px; font-size: 22px; }
+.gd-empty p { margin: 0 0 24px; color: var(--gd-muted); }

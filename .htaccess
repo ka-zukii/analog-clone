@@ -11,9 +11,9 @@
     Options +FollowSymLinks -Indexes -MultiViews
 
     # ===============================
-    # Public assets
+    # Root → src/index.html
     # ===============================
-    RewriteRule ^assets/(.*)$ assets/$1 [L]
+    RewriteRule ^$ src/index.html [L]
 
     # ===============================
     # CSS & JS dari src
@@ -22,13 +22,11 @@
     RewriteRule ^js/(.*)$ src/js/$1 [L]
 
     # ===============================
-    # Root → index.html
+    # Clean URL: /game → src/game.html
+    # QSA wajib supaya query string (?id=...) tidak hilang
     # ===============================
-    RewriteRule ^$ src/index.html [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^/]+)$ src/$1.html [L,QSA]
 
-    # ===============================
-    # Clean URL HTML (tanpa .html)
-    # ===============================
-    RewriteCond %{DOCUMENT_ROOT}/analog-clone/src/$1.html -f
-    RewriteRule ^(.+)$ src/$1.html [L]
 </IfModule>
